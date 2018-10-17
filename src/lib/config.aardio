@@ -1,0 +1,27 @@
+//config 配置文件
+import fsys.config;
+config  = fsys.config("/config/"); 
+//config  = fsys.config( fsys.appdata("/软件作者/应用程序名/") ); 
+
+//不需要序列化的配置名字前请添加下划线
+namespace config {
+	__appName = "应用程序名";
+	__appVersion = "1.0.0.01";
+	__appDescription = "这是一个测试程序";
+	__website = "http://www.aardio.com/";
+}
+
+/**intellisense(config)
+__appName = 应用程序名
+__appVersion = 应用程序内部版本号
+__appDescription = 程序说明
+__website = 官方网站
+
+saveAll() = 写入所有配置到文件
+default.load() = 从配置文件(文件名"default")载入\n加载成功返回对象,加载失败返回null空值\n!fsys_table.
+default.save() = 存储到配置文件(文件名"default")
+default.mixin = @.mixin(\n   键名 = 值__;\n   键名 = 值;\n);//该数会自动调用save函数保存配置到文件
+default.控件名称 = 控件默认值\n调用save()函数同步控件当前值
+default.属性名 = 自配置文件(文件名"default")读写属性\n属性值可以是支持序列化的普通变量,支持table对象.\n配置文件在首次使用时自动加载,退出程序时自动保存.
+? = 配置文件名,\n读写配置并序列化为一个表对象,\n表的成员值可以是支持序列化的普通变量,支持table对象\n配置文件在首次使用时自动加载,退出程序时自动保存\n!fsys_table.
+end intellisense**/

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {margin: 0; padding: 0;}
+		html,body {width: 100%;height: 100%}
+		.contener{float: left; width: 100%;height: 100%;border: 1px solid green; box-sizing: border-box; box-shadow: darkgrey 10px 10px 30px 5px ;}
+		.header{background-color: #345;height: 120px;color: white;}
+		.toolbar{height: 30px; padding: 5px 5px 0 5px;}
+		.toolbar .icon,.text{float: left;margin-right:10px;}
+		.toolbar .bars{float: right;}
+		.toolbar .bars .bar{padding: 5px 10px;}
+		.toolbar .bars .bar:hover{cursor:pointer;background: rgba(255,0,0,0.5);}
+		.tabs{}
+		.tabs li{float: left;display: block;padding: 5px 15px}
+		.tabs li:hover{cursor: pointer;background:rgba(255,255,255,0.5);}
+		.tabs li img{display: block;}
+		.tabs li span{display: block;text-align: center;}
+	</style>
+</head>
+<body>
+<div class="contener">
+	<div class="header" onmousedown="external.hitCaption()">
+		<div class="toolbar">
+			<div class="icon"><img src="images/icon.png" alt=""></div>
+			<div class="text">我的小程序</div>
+			<div class="bars">
+				<div class="bar close"><image src="images/close.png"></div>
+			</div>
+		</div>
+		<ul class="tabs">
+			<li class="tab"><img src="images/word.png" alt=""><span>Word</span></li>
+			<li class="tab"><img src="images/excel.png" alt=""><span>Excel</span></li>
+			<li class="tab"><img src="images/ppt.png" alt=""><span>PPT</span></li>
+		</ul>
+	</div>
+</div>
+	<script type="text/javascript">
+	document.querySelector(".tabs").addEventListener('click', function(e){
+		alert(11);
+		e.stopPropagation();
+	});
+	document.querySelector(".tabs").addEventListener('mousedown', function(e){
+		e.stopPropagation();
+	});
+	document.querySelector(".close").addEventListener('mousedown', function(e){
+		e.stopPropagation();
+	});
+	document.querySelector(".close").addEventListener('click', function(e){
+		external.close();
+	});
+	</script>
+</body>
+</html>

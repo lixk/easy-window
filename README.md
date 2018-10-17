@@ -36,6 +36,7 @@ bool类型值只能是`true`或者`false`
 |参数|类型|说明|
 | :--- | :--- | :--- |
 |url|string|网页地址，相对地址，绝对地址，网址均可|
+|timeout|int|等待页面加载超时时间，单位：毫秒|
 |icon|string|窗体图标路径|
 |title|string|窗体标题|
 |width|int|窗体宽度|
