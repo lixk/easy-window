@@ -125,9 +125,9 @@ if(_ARGV['border'] == 'false') {
 	mainForm.modifyStyle(0xC00000/*_WS_CAPTION*/, 0);
 }
 //窗体边框是否有阴影
-//if(_ARGV['shadow'] == 'true'){	
-//	win.ui.shadow(mainForm);
-//}
+if(_ARGV['shadow'] == 'true'){
+	win.ui.shadow(mainForm).setResizeBorder(false);
+}
 //是否可缩放窗体边框
 if(_ARGV['resizable'] != 'false') win.ui.resizeBorder(mainForm);
 //是否限制窗体缩放范围
