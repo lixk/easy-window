@@ -43,8 +43,10 @@ bool类型值只能是`true`或者`false`
 |height|int|窗体高度|
 |minbox|bool|最小化窗体按钮，默认值：`true`|
 |maxbox|bool|最大化窗体按钮，默认值：`true`|
+|minmax|bool|限定窗口缩放范围，默认值：`false`|
 |border|bool|窗体是否有边框，默认值：`true`|
-|sizebox|bool|窗体是否可缩放，默认值：`true`|
+|resizable|bool|窗体是否可缩放，默认值：`true`|
+|shadow|bool|窗体边框是否有阴影，默认值：`false`|
 |menu|bool|是否显示菜单栏，默认值：`true`|
 |layered|bool|是否是不规则窗体，默认值：`false`|
 |toolwindow|bool|是否是弹窗工具窗体，默认值：`false`|
