@@ -1,15 +1,16 @@
 # easy-window
-一个使用HTML5技术创建Windows应用程序的简单工具。本工具可以将HTML，CSS，JS写成的网页以桌面窗体应用的方式呈现出来。创作一般的桌面应用，不再需要掌握QT，C++，C#，Java那些繁琐的东西，你只需要会创建网页就够了。废话不多说，先来看看本工具可以创建哪些窗体应用吧。
+一个使用HTML5技术创建Windows应用程序的简单工具。本工具可以将HTML，CSS，JS写成的网页以桌面窗体应用的方式呈现出来。创作一般的桌面应用，不再需要掌握QT，C++，C#，Java那些繁琐的东西，只要会创建网页就够了。废话不多说，先来看看本工具可以创建哪些窗体应用吧。
 ### 示例
 1. 简单窗体
 
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/1.png)
+![image](https://github.com/lixk/easy-window/raw/master/screenshots/1-1.png)
+![image](https://github.com/lixk/easy-window/raw/master/screenshots/1-2.png)
 
 2. 设置窗体图标和标题
 
 ![image](https://github.com/lixk/easy-window/raw/master/screenshots/2.png)
 
-3. 设置窗体宽高
+3. 限制窗体宽高
 
 ![image](https://github.com/lixk/easy-window/raw/master/screenshots/3.png)
 
@@ -19,11 +20,14 @@
 
 5. 无边框窗体
 
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/5.png)
+![image](https://github.com/lixk/easy-window/raw/master/screenshots/5-1.png)
+![image](https://github.com/lixk/easy-window/raw/master/screenshots/5-2.png)
+![image](https://github.com/lixk/easy-window/raw/master/screenshots/5-3.png)
 
 6. 不规则窗体
 
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/6.png)
+![image](https://github.com/lixk/easy-window/raw/master/screenshots/6-1.png)
+![image](https://github.com/lixk/easy-window/raw/master/screenshots/6-2.png)
 
 ---
 ### 使用方式
@@ -39,15 +43,17 @@ bool类型值只能是`true`或者`false`
 |timeout|int|等待页面加载超时时间，单位：毫秒|
 |icon|string|窗体图标路径|
 |title|string|窗体标题|
-|width|int|窗体宽度|
-|height|int|窗体高度|
 |minbox|bool|最小化窗体按钮，默认值：`true`|
 |maxbox|bool|最大化窗体按钮，默认值：`true`|
 |minmax|bool|限定窗口缩放范围，默认值：`false`|
 |border|bool|窗体是否有边框，默认值：`true`|
 |resizable|bool|窗体是否可缩放，默认值：`true`|
 |shadow|bool|窗体边框是否有阴影，默认值：`false`|
-|menu|bool|是否显示菜单栏，默认值：`true`|
+|posx|int|窗体初始横坐标|
+|posy|int|窗体初始纵坐标|
+|width|int|窗体宽度|
+|height|int|窗体高度|
+|contextmenu|bool|是否启用鼠标右键菜单，默认值：`true`|
 |layered|bool|是否是不规则窗体，默认值：`false`|
 |toolwindow|bool|是否是弹窗工具窗体，默认值：`false`|
 |topmost|bool|窗体是否置顶，默认值：`false`|
@@ -72,10 +78,13 @@ bool类型值只能是`true`或者`false`
 |getPos()|获取窗体位置|
 |setPos(x,y,width,height)|设置窗体位置和大小，`x`:横坐标，`y`:纵坐标，`width`:宽度，`height`:高度。宽高参数可选|
 |getScreen()|获取屏幕宽高|
-|setIcon(icon)|设置窗体图标|
+|setIcon(iconPath)|设置窗体图标|
 |setTitle(text)|设置窗体标题|
 |setTopmost(state)|窗体是否置顶，`state`:true/false|
 
 ### 说明
-本项目使用`aardio`语言开发，内部使用了`miniblink`做页面渲染。如果你对本项目感兴趣，欢迎使用，共同探讨。如果需要扩展功能，可以下载源码，自已修改编译即可。
-最后，感谢`aardio`和`miniblink`作者，谢谢他们让我们的桌面软件开发变得这么简单^_^
+本项目使用`aardio`语言开发，内部使用了`miniblink`（精简浏览器内核）做页面渲染。如果你对本项目感兴趣，欢迎使用，共同探讨。如果需要扩展功能，可以下载源码，自行修改编译即可。
+
+aardio 地址 [http://www.aardio.com/](http://www.aardio.com/)
+
+miniblink 地址 [https://weolar.github.io/miniblink/](https://weolar.github.io/miniblink/)

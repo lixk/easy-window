@@ -94,13 +94,6 @@ mb.external = {
 
 }
 
-//打开链接时触发该事件
-mb.onNavigation = function(url,navigationType){
-	if( navigationType == 0/*_WKE_NAVIGATION_TYPE_LINKCLICK*/ ){
-
-	}
-	return true;
-}
 
 //窗口图标
 if(_ARGV['icon']) mainForm.setIcon(_ARGV['icon']);
@@ -117,8 +110,6 @@ if(_ARGV['toolwindow'] == 'true'){
   mainForm.modifyStyleEx(0x40000/*_WS_EX_APPWINDOW*/, 0);
   mainForm.modifyStyleEx(0, 0x80/*_WS_EX_TOOLWINDOW*/);
  }
-//是否允许缩放边框
-//if(_ARGV['sizebox'] == 'false') mainForm.modifyStyle(0x40000/*_WS_SIZEBOX*/, 0);
 //是否有边框
 if(_ARGV['border'] == 'false') {
 	mainForm.modifyStyle(0x800000/*_WS_BORDER*/, 0);
@@ -132,23 +123,25 @@ if(_ARGV['shadow'] == 'true'){
 if(_ARGV['resizable'] != 'false') win.ui.resizeBorder(mainForm);
 //是否限制窗体缩放范围
 if(_ARGV['minmax'] == 'true') win.ui.minmax(mainForm);
-//是否有菜单
-if(_ARGV['menu'] == 'false') mainForm.modifyStyle(0x80000/*_WS_SYSMENU*/, 0);
 
 //窗口大小及位置
 mainForm.width = _ARGV['width'] ? _ARGV['width'] : 1000;
 mainForm.height = _ARGV['height'] ? _ARGV['height'] : 680;
 var screen_width, screen_height = win.getScreen();
-mainForm.setPos((screen_width-mainForm.width)/2, (screen_height-mainForm.height)/2);
-
-mainForm.wndproc = function(hwnd,message,wParam,lParam){
-    	select( message ) {
-    		case 0x204/*_WM_RBUTTONDOWN*/{
-
+var x = _ARGV['posx'] ? _ARGV['posx'] : (screen_width-mainForm.width)/2;
+var y = _ARGV['posy'] ? _ARGV['posy'] : (screen_height-mainForm.height)/2;
+mainForm.setPos(x, y);
+//是否禁用右键菜单
+if(_ARGV['contextmenu'] == 'false'){
+	mainForm.wndproc = function(hwnd,message,wParam,lParam){
+    		select( message ) {
+    			case 0x204/*_WM_RBUTTONDOWN*/{
+					return false;
+    			}
     		}
-    	}
-	}
-	
+		}
+}
+
 //加载资源
 if(_ARGV['url']){
 	mb.go(_ARGV['url']);
