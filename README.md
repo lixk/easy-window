@@ -27,7 +27,7 @@ easy-window 是一个旨在简化桌面开发难度的通用窗体，它可以�
 6. 不规则窗体
 
 ![image](https://github.com/lixk/easy-window/raw/master/screenshots/6-1.png)
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/6-2.png)
+![image](https://github.com/lixk/easy-window/raw/master/screenshots/6-2.gif)
 
 ---
 ### 使用方法
