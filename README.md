@@ -106,9 +106,9 @@ bool类型值只能是`true`或者`false`
 |hitmmin()|最小化窗体|
 |close()|关闭窗体|
 |alert(text, title)|提示框，`text`:提示内容，`title`:提示窗口标题|
-|openFile(fileType, title)|打开文件，`fileType`:文件类型(所有文件|*.*|文本文件|*.txt|), `title`:选择文件窗口标题。参数均非必填|
+|openFile(fileType, title)|打开文件，`fileType`:文件类型(所有文件&#124;\*.\*&#124;文本文件&#124;\*.txt&#124;), `title`:选择文件窗口标题。参数均非必填|
 |openDir(dir, subTitle, title)|打开目录，`dir`:初始目录, `subTitle`:子标题, `title`:标题。参数均非必填|
-|saveFile(fileType, title)|保存文件，`fileType`:文件类型(所有文件|*.*|文本文件|*.txt|), `title`:窗口标题。参数均非必填|
+|saveFile(fileType, title)|保存文件，`fileType`:文件类型(所有文件&#124;\*.\*&#124;文本文件&#124;\*.txt&#124;), `title`:窗口标题。参数均非必填|
 |readFile(path)|读取文件，`path`:文件路径|
 |writeFile(path, text)|写文件，`path`: 文件路径, `text`:文件内容|
 |clipRead()|读取剪贴板内容|
