@@ -4,33 +4,22 @@ easy-window 是一个旨在简化桌面开发难度的通用窗体，它可以�
 
 软件界面可以有多绚，就看想象力了。闲话不多说，先来看看本工具可以创建哪些窗体应用吧。
 ### 应用示例
-1. 简单窗体
-
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/1-1.png)
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/1-2.png)
-
-2. 设置窗体图标和标题
-
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/2.png)
-
-3. 限制窗体宽高
-
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/3.png)
-
-4. 隐藏最大化最小化按钮
-
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/4.png)
-
-5. 无边框窗体
-
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/5-1.png)
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/5-2.png)
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/5-3.png)
-
-6. 不规则窗体
-
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/6-1.png)
-![image](https://github.com/lixk/easy-window/raw/master/screenshots/6-2.gif)
+ 1. 简单窗体
+    ![image](https://github.com/lixk/easy-window/raw/master/screenshots/1-1.png)
+    ![image](https://github.com/lixk/easy-window/raw/master/screenshots/1-2.png)
+ 2. 设置窗体图标和标题
+    ![image](https://github.com/lixk/easy-window/raw/master/screenshots/2.png)
+ 3. 限制窗体宽高
+    ![image](https://github.com/lixk/easy-window/raw/master/screenshots/3.png)
+ 4. 隐藏最大化最小化按钮
+    ![image](https://github.com/lixk/easy-window/raw/master/screenshots/4.png)
+ 5. 无边框窗体
+    ![image](https://github.com/lixk/easy-window/raw/master/screenshots/5-1.png)
+    ![image](https://github.com/lixk/easy-window/raw/master/screenshots/5-2.png)
+    ![image](https://github.com/lixk/easy-window/raw/master/screenshots/5-3.png)
+ 6. 不规则窗体
+    ![image](https://github.com/lixk/easy-window/raw/master/screenshots/6-1.png)
+    ![image](https://github.com/lixk/easy-window/raw/master/screenshots/6-2.gif)
 
 ---
 ### 使用方法
