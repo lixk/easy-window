@@ -24,10 +24,10 @@ mb.external = {
     hitCaption = function(){
         mainForm.hitCaption();
     };
-    hitmax = function(){
+    hitMax = function(){
     	return mainForm.hitmax()
     };
-    hitmin = function(){
+    hitMin = function(){
     	mainForm.hitmin()
     };
     close = function(){

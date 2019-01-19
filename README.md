@@ -94,8 +94,8 @@ bool类型值只能是`true`或者`false`
 |函数|说明|
 | :--- | :--- |
 |hitCaption()|主要用于绑定鼠标拖动窗体。比如，在无边框或者不规则窗体中，对指定html元素绑定该函数即可实现鼠标拖动该元素的功能，示例：`<img src="images/ecology-heart.png" onmousedown="external.hitCaption()">`，详情参见不规则窗体示例|
-|hitmax()|最大化窗体|
-|hitmmin()|最小化窗体|
+|hitMax()|最大化窗体|
+|hitMin()|最小化窗体|
 |close()|关闭窗体|
 |alert(text, title)|提示框，`text`:提示内容，`title`:提示窗口标题|
 |openFile(fileType, title)|打开文件，`fileType`:文件类型(所有文件&#124;\*.\*&#124;文本文件&#124;\*.txt&#124;), `title`:选择文件窗口标题。参数均非必填|
