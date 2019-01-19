@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<body>
+<button onclick="loadFile()">打开文件</button>
+<script>
+		function loadFile(){
+			//选择文件
+			var filePath = external.openFile('所有文件|*.*|文本文件(.txt)|*.txt|');
+			//读取并显示文件
+			if(filePath){
+				external.alert(external.readFile(filePath), '您选择的文件内容如下');
+			}
+		}
+</script>
+</body>
+</html>
