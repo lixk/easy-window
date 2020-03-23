@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project ver="10" name="easy-window" libEmbed="true" icon="res\default-icon.ico" CompanyName="lixk" FileDescription="   " LegalCopyright="Copyright (C) 李相奎 2018" ProductName="easy-window" InternalName="easy-window" FileVersion="0.0.0.137" ProductVersion="0.0.0.137" publishDir="/Publish/" ui="win" output="easy-window.exe" dstrip="false">
+<project ver="10" name="easy-window" libEmbed="true" icon="res\default-icon.ico" CompanyName="lixk" FileDescription="   " LegalCopyright="Copyright (C) 李相奎 2018" ProductName="easy-window" InternalName="easy-window" FileVersion="0.0.0.150" ProductVersion="0.0.0.150" publishDir="/Publish/" ui="win" output="easy-window.exe" dstrip="false">
 	<file name="main.aardio" path="main.aardio" comment="启动程序代码"/>
 	<folder name="资源文件" path="res" embed="true">
 		<file name="default-icon.ico" path="res\default-icon.ico" comment="res\eco-leafs.ico"/>

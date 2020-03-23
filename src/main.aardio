@@ -187,11 +187,13 @@ mb.external = {
             win.setTopmost(mainForm.hwnd, false);
         }
     };
-    exeCmd = function(cmd, params, showCmd){
-        if(showCmd){
-    		process.execute(cmd, params);
-    	} else {
-    		process.execute(cmd, params, , 0/*_SW_HIDE*/);
+    
+    shell = function(cmd, showCmdWindow, waitResult){
+    	var result = showCmdWindow ? io.popen(cmd) : process.popen(cmd);
+    	if(waitResult){
+    		var data = result.read(-1);
+    		result.close();
+    		return string.fromto(data, 936, 65001);
     	}
     };
 

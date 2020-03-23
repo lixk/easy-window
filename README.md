@@ -125,6 +125,7 @@ bool类型值只能是`true`或者`false`
 |setIcon(iconPath)|设置窗体图标|
 |setTitle(text)|设置窗体标题|
 |setTopmost(state)|窗体是否置顶，`state`:true/false|
+|shell(cmd, showCmdWindow, waitResult)|执行系统命令， `cmd`: 命令语句，`showCmdWindow`: 是否显示cmd窗体，`waitResult`: 是否等待命令执行完成并获取执行结果。示例：`var ip = external.shell('ipconfig /all', false, true); external.alert(ip);`|
 
 
 ### 备注
