@@ -36,6 +36,19 @@ shell.run "easy-window.exe -url https://www.baidu.com -title 百度首页"
 当然，`vbs`文件不是必须的，可以直接在cmd控制台中运行`easy-window.exe -url https://www.baidu.com -title 百度首页`，效果是一样的。
 更多启动参数用法请参考下方`参数说明`。
 
+除了启动参数配置窗体样式的方式外，还支持配置文件的方式。可以直接运行`easy-window.exe`，如果同级目录内不存在`config.ini`文件，则会在同级目录下自动生成该文件；如果已存在，则会直接读取该配置文件中的属性配置。
+配置文件示例：
+```ini
+[window]
+url=samples/login/index.html
+title=用户登录
+width=640
+height=600
+resizable=false
+maxbox=false
+```
+然后即可直接运行`easy-window.exe`，此时会自动加载显示`samples/login/index.html`文件。
+注意，启动参数配置的优先级高于配置文件，如果同时通过启动参数和配置文件的方式指定了同一个属性，则会优先使用启动参数。
 
 ### 参数说明
 bool类型值只能是`true`或者`false`
@@ -43,7 +56,7 @@ bool类型值只能是`true`或者`false`
 |参数|类型|说明|
 | :--- | :--- | :--- |
 |url|string|网页地址，相对地址，绝对地址，远程网址均可|
-|timeout|int|等待页面加载超时时间，单位：毫秒|
+|timeout|int|等待页面加载超时时间。单位：毫秒。如果指定了该参数，窗体会等到渲染完成再一次性显示出来。|
 |icon|string|窗体图标路径|
 |title|string|窗体标题|
 |minbox|bool|最小化窗体按钮，默认值：`true`|

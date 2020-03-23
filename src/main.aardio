@@ -11,24 +11,120 @@ import web.blink.layeredWindow;
 import web.json;
 import fsys.dlg;
 import fsys.file;
+import fsys.ini;
+import process.popen;
+import io;
 import mouse;
 import win.ui.minmax;
 import win.ui.shadow;
 import win.ui.resizeBorder;
 
+var CONFIG_FILE = "config.ini";
+//如果配置文件不存在，则创建
+if(!io.exist(CONFIG_FILE)){
+	var window = fsys.ini(CONFIG_FILE).getSection("window");
+	window.url = "index.html";
+	window.save();
+}
+//读取配置文件
+var window = fsys.ini(CONFIG_FILE).getSection("window");
+//网页地址，相对地址，绝对地址，远程网址均可
+var url = _ARGV['url'] || window.url;
+//等待页面加载超时时间，单位：毫秒
+var timeout = _ARGV['timeout'] || window.timeout;
+//是否启用鼠标右键菜单
+var contextmenu = _ARGV['contextmenu'] || window.contextmenu;
+//是否是不规则窗体
+var layered = _ARGV['layered'] || window.layered;
+//是否是弹窗工具窗体
+var toolwindow = _ARGV['toolwindow'] || window.toolwindow;
+//窗体是否置顶
+var topmost = _ARGV['topmost'] || window.topmost;
+//窗体图标路径
+var icon = _ARGV['icon'] || window.icon;
+//窗体标题
+var title = _ARGV['title'] || window.title;
+//最小化窗体按钮
+var minbox = _ARGV['minbox'] || window.minbox;
+//最大化窗体按钮
+var maxbox = _ARGV['maxbox'] || window.maxbox;
+//限定窗口缩放范围
+var minmax = _ARGV['minmax'] || window.minmax;
+//窗体是否有边框
+var border = _ARGV['border'] || window.border;
+//窗体是否可缩放
+var resizable = _ARGV['resizable'] || window.resizable;
+//窗体边框是否有阴影
+var shadow = _ARGV['shadow'] || window.shadow;
+//窗体初始横坐标
+var posx = _ARGV['posx'] || window.posx;
+//窗体初始纵坐标
+var posy = _ARGV['posy'] || window.posy;
+//窗体宽度
+var width = _ARGV['width'] || window.width;
+//窗体高度
+var height = _ARGV['height'] || window.height;
 
-var mb = _ARGV['layered'] == 'true' ? web.blink.layeredWindow(mainForm) : web.blink.form(mainForm);
+//*****************设置属性*************************
+//设置窗口图标
+if(icon) mainForm.setIcon(icon);
+//设置窗口标题
+if(title) mainForm.text = title;
+//设置窗口置顶
+if(topmost == 'true') win.setTopmost(mainForm.hwnd);
+//是否有最小化按钮
+if(minbox == 'false') mainForm.modifyStyle(0x20000/*_WS_MINIMIZEBOX*/ , 0);
+//是否有最大化按钮
+if(maxbox == 'false') mainForm.modifyStyle(0x10000/*_WS_MAXIMIZEBOX*/, 0);
+//是否是toolwindow
+if(toolwindow == 'true'){
+  mainForm.modifyStyleEx(0x40000/*_WS_EX_APPWINDOW*/, 0);
+  mainForm.modifyStyleEx(0, 0x80/*_WS_EX_TOOLWINDOW*/);
+ }
+//是否有边框
+if(border == 'false') {
+	mainForm.modifyStyle(0x800000/*_WS_BORDER*/, 0);
+	mainForm.modifyStyle(0xC00000/*_WS_CAPTION*/, 0);
+}
+//窗体边框是否有阴影
+if(shadow == 'true'){
+	win.ui.shadow(mainForm).setResizeBorder(false);
+}
+//是否可缩放窗体边框
+if(resizable != 'false') win.ui.resizeBorder(mainForm);
+//是否限制窗体缩放范围
+if(minmax == 'true') win.ui.minmax(mainForm);
+//设置窗口大小及位置
+mainForm.width = width ? width : 800;
+mainForm.height = height ? height : 600;
+var screen_width, screen_height = win.getScreen();
+var x = posx ? posx : (screen_width-mainForm.width)/2;
+var y = posy ? posy : (screen_height-mainForm.height)/2;
+mainForm.setPos(x, y);
+//是否禁用右键菜单
+if(contextmenu == 'false'){
+	mainForm.wndproc = function(hwnd,message,wParam,lParam){
+    	select( message ) {
+    		case 0x204/*_WM_RBUTTONDOWN*/{
+				return false;
+    		}
+    	}
+	}
+}
 
-//导出网页js脚本可以直接调用的external对象
+//创建mb对象
+var mb = layered == 'true' ? web.blink.layeredWindow(mainForm) : web.blink.form(mainForm);
+
+//*********导出网页js脚本可以直接调用的external对象******************
 mb.external = {
     hitCaption = function(){
         mainForm.hitCaption();
     };
     hitMax = function(){
-    	return mainForm.hitmax()
+    	return mainForm.hitmax();
     };
     hitMin = function(){
-    	mainForm.hitmin()
+    	mainForm.hitmin();
     };
     close = function(){
         mainForm.close();
@@ -91,66 +187,25 @@ mb.external = {
             win.setTopmost(mainForm.hwnd, false);
         }
     };
+    exeCmd = function(cmd, params, showCmd){
+        if(showCmd){
+    		process.execute(cmd, params);
+    	} else {
+    		process.execute(cmd, params, , 0/*_SW_HIDE*/);
+    	}
+    };
 
 }
 
-
-//窗口图标
-if(_ARGV['icon']) mainForm.setIcon(_ARGV['icon']);
-//窗口标题
-if(_ARGV['title']) mainForm.text = _ARGV['title'];
-//窗口置顶
-if(_ARGV['topmost'] == 'true') win.setTopmost(mainForm.hwnd);
-//是否有最小化按钮
-if(_ARGV['minbox'] == 'false') mainForm.modifyStyle(0x20000/*_WS_MINIMIZEBOX*/ , 0);
-//是否有最大化按钮
-if(_ARGV['maxbox'] == 'false') mainForm.modifyStyle(0x10000/*_WS_MAXIMIZEBOX*/, 0);
-//是否是toolwindow
-if(_ARGV['toolwindow'] == 'true'){
-  mainForm.modifyStyleEx(0x40000/*_WS_EX_APPWINDOW*/, 0);
-  mainForm.modifyStyleEx(0, 0x80/*_WS_EX_TOOLWINDOW*/);
- }
-//是否有边框
-if(_ARGV['border'] == 'false') {
-	mainForm.modifyStyle(0x800000/*_WS_BORDER*/, 0);
-	mainForm.modifyStyle(0xC00000/*_WS_CAPTION*/, 0);
-}
-//窗体边框是否有阴影
-if(_ARGV['shadow'] == 'true'){
-	win.ui.shadow(mainForm).setResizeBorder(false);
-}
-//是否可缩放窗体边框
-if(_ARGV['resizable'] != 'false') win.ui.resizeBorder(mainForm);
-//是否限制窗体缩放范围
-if(_ARGV['minmax'] == 'true') win.ui.minmax(mainForm);
-
-//窗口大小及位置
-mainForm.width = _ARGV['width'] ? _ARGV['width'] : 1000;
-mainForm.height = _ARGV['height'] ? _ARGV['height'] : 680;
-var screen_width, screen_height = win.getScreen();
-var x = _ARGV['posx'] ? _ARGV['posx'] : (screen_width-mainForm.width)/2;
-var y = _ARGV['posy'] ? _ARGV['posy'] : (screen_height-mainForm.height)/2;
-mainForm.setPos(x, y);
-//是否禁用右键菜单
-if(_ARGV['contextmenu'] == 'false'){
-	mainForm.wndproc = function(hwnd,message,wParam,lParam){
-    		select( message ) {
-    			case 0x204/*_WM_RBUTTONDOWN*/{
-					return false;
-    			}
-    		}
-		}
-}
-
-//加载资源
-if(_ARGV['url']){
-	mb.go(_ARGV['url']);
-	var timeout = _ARGV['timeout'] ? tonumber(_ARGV['timeout'],10):5000;
-	if(!mb.wait(null, timeout)){//等待页面打开
-		mb.doScript("document.write('<h1>timeout!</h1>')");
+//**************加载页面资源*******************
+if(url){
+	mb.go(url);
+	//如果设置了超时参数，等待页面打开，直到超时
+	if(timeout && !mb.wait(null, tonumber(timeout, 10))){
+		mb.doScript("document.write('<h1>Timeout!</h1>')");
 	}
 }else{
-    mb.doScript("document.write('<h1>404!</h1>')");
+    mb.doScript("document.write('<h1>Page url is required!</h1>')");
 }
 
 mainForm.show();
